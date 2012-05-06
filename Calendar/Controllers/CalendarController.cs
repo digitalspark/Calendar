@@ -15,21 +15,20 @@ namespace Calendar.Controllers
 
         public ActionResult Index()
         {
-            var database = Calendar.Respository.MongoDB.CalendarDatabase.Calendar.GetDatabase;
+            var repository = new Calendar.Respository.MongoDB.CalendarRepository<testmodel>("TestModels");
 
-            var collection = database.GetCollection<testmodel>("TestModels");
             try
             {
-                collection.RemoveAll();
+                repository.RemoveAll();
             }
             catch (Exception)
             {
                 //don't know if this throws an exception if the collection hasn't been created yet
             }
             // insert object
-            collection.Insert(new testmodel { Name = "foo" });
+            repository.Insert(new testmodel { Name = "foo" });
             // fetch all objects
-            var thingies = collection.FindAll();
+            var thingies = repository.GetAll();
             return View(thingies.ToList());
         }
 
