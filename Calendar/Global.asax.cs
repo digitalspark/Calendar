@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Configuration;
 
 namespace Calendar
 {
@@ -44,6 +45,9 @@ namespace Calendar
             RegisterRoutes(RouteTable.Routes);
 
             BundleTable.Bundles.RegisterTemplateBundles();
+
+            //set up the database singleton
+            Calendar.Respository.MongoDB.CalendarDatabase.Setup(ConfigurationManager.AppSettings.Get("MONGOLAB_URI"));
         }
     }
 }

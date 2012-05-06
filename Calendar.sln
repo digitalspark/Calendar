@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calendar", "Calendar\Calend
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calendar.Tests", "Calendar.Tests\Calendar.Tests.csproj", "{D35FCE82-A4B9-458F-9866-AD73E2219FE4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calendar.Respository.MongoDB", "Calendar.Respository.MongoDB\Calendar.Respository.MongoDB.csproj", "{F505CB40-0750-4902-A544-FA2FE40D2A9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calendar.Objects", "Calendar.Objects\Calendar.Objects.csproj", "{815DDD62-C853-4A77-BD5F-386055329B73}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +23,14 @@ Global
 		{D35FCE82-A4B9-458F-9866-AD73E2219FE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D35FCE82-A4B9-458F-9866-AD73E2219FE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D35FCE82-A4B9-458F-9866-AD73E2219FE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F505CB40-0750-4902-A544-FA2FE40D2A9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F505CB40-0750-4902-A544-FA2FE40D2A9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F505CB40-0750-4902-A544-FA2FE40D2A9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F505CB40-0750-4902-A544-FA2FE40D2A9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{815DDD62-C853-4A77-BD5F-386055329B73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{815DDD62-C853-4A77-BD5F-386055329B73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{815DDD62-C853-4A77-BD5F-386055329B73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{815DDD62-C853-4A77-BD5F-386055329B73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

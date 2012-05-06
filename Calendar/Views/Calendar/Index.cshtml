@@ -1,8 +1,10 @@
-﻿@{
+﻿@model List<Calendar.Models.testmodel>
+@{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
+<h3>Total Records: @Model.Count</h3>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#eventscalendar").wijevcal();
