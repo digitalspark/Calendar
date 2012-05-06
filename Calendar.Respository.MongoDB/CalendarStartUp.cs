@@ -40,7 +40,7 @@ namespace Calendar.Respository.MongoDB
             }
         }
         //note that MongoServer.Create returns the SAME database connection for the same connectionstring. No need to singleton it myself. http://www.mongodb.org/display/DOCS/CSharp+Driver+Quickstart
-        //also appharbor's connection string automatically selects the database
+        //also appharbor's connection string automatically selects the database, so using MongoDatabase.create to directly get the database.
         public MongoDatabase GetDatabase{
             get { return MongoDatabase.Create(_connectionstring); }
         }
