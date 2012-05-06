@@ -8,5 +8,19 @@ namespace Calendar.Objects
 {
     public class CalendarEvent
     {
+        public ObjectId Id { get; set; }
+        public string wijmo_id { get; set; }
+        public string calendar { get; set; }
+        public string subject { get; set; }
+        public string location { get; set; }
+        public DateTime start { get; set; }
+        public DateTime end { get; set; }
+        public string description { get; set; }
+        public string color { get; set; }
+        public bool allday { get; set; }
+        public string tag { get; set; }
+    }
+    public class Event
+    {
     }
 }

@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Configuration;
+using Calendar.Models;
 
 namespace Calendar
 {
@@ -43,7 +44,7 @@ namespace Calendar
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
-
+            //ValueProviderFactories.Factories.Add(new JsonValueProviderFactory());
             BundleTable.Bundles.RegisterTemplateBundles();
 
             //set up the database singleton

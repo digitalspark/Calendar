@@ -7,7 +7,95 @@
 <h3>Total Records: @Model.Count</h3>
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#eventscalendar").wijevcal();
+        $("#eventscalendar").wijevcal({
+            visibleCalendars: ["My", "Work"],
+            dataStorage: {
+                addEvent: _updateEvent,
+                updateEvent: _updateEvent,
+//                deleteEvent: function (obj, successCallback, errorCallback) {
+//                    window.setTimeout(function () {
+//                        var curCalStore = amplify.store("calendarstore_" + obj.calendar);
+//                        if (!curCalStore) {
+//                            curCalStore = {};
+//                        }
+//                        if (curCalStore[obj.id]) {
+//                            delete curCalStore[obj.id];
+//                        }
+//                        amplify.store("calendarstore_" + obj.calendar, curCalStore);
+//                        successCallback()
+//                    }, 400); //simulate server delay
+//                    //errorCallback("Unable to delete event");
+//                },
+//                loadEvents: function (visibleCalendars,
+//											successCallback, errorCallback) {
+
+//                    var i, j, events = [];
+//                    window.setTimeout(function () {
+//                        for (i = 0; i < visibleCalendars.length; i++) {
+
+//                            var curCalStore = amplify.store("calendarstore_" + visibleCalendars[i]);
+//                            if (!curCalStore) {
+//                                curCalStore = {};
+//                                amplify.store("calendarstore_" + visibleCalendars[i], curCalStore);
+//                            }
+//                            for (j in curCalStore) {
+//                                events.push(curCalStore[j]);
+//                            }
+//                        }
+//                        successCallback(events);
+//                    }, 500);
+//                    //errorCallback("unable to load events");
+//                },
+                addCalendar: _updateCalendar,
+                updateCalendar: _updateCalendar,
+                deleteCalendar: function (obj, successCallback, errorCallback) {
+                    successCallback();
+                    //errorCallback("Unable to delete calendar");
+                },
+                loadCalendars: function (successCallback, errorCallback) {
+                    var calendars = [{ name: "My", id: "My", color: "red" },
+									 { name: "Work", id: "Work", color: "blue"}];
+                    successCallback(calendars);
+                }
+            }
+        });
+
+
+
     });
-</script>
+
+    function _updateEvent(obj, successCallback, errorCallback) {
+
+//        $.post("/Calendar/Add", obj, function (msg) {
+//            alert("Data Saved: " + msg)
+//            successCallback();
+        //        });
+        var x = JSON.stringify(obj);
+        $.ajax({
+            type: "POST",
+            url: "/Calendar/Add",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(obj)
+        }).done(function (msg) {
+            alert("Data Saved: " + msg);
+            successCallback();
+        });
+//        window.setTimeout(function () {
+//            var curCalStore = amplify.store("calendarstore_" + obj.calendar);
+//            if (!curCalStore) {
+//                curCalStore = {};
+//            }
+//            curCalStore[obj.id] = obj;
+//            amplify.store("calendarstore_" + obj.calendar, curCalStore);
+//            successCallback()
+//        }, 400); //simulate server delay
+//        //errorCallback("Unable to save event");
+    }
+
+    function _updateCalendar(obj, successCallback, errorCallback) {
+        successCallback();
+        //errorCallback("Unable to save calendar");
+    }
+	</script>
 <div id="eventscalendar"></div>
