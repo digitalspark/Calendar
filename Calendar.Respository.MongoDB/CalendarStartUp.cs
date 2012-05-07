@@ -17,7 +17,14 @@ namespace Calendar.Respository.MongoDB
         {
             if (!string.IsNullOrWhiteSpace(connectionstring))
             {
-                _connectionstring = connectionstring;
+                if (connectionstring.IndexOf("?safe=true") < 0)
+                {
+                    _connectionstring = connectionstring.TrimEnd('/') + "?safe=true";
+                }
+                else
+                {
+                    _connectionstring = connectionstring;
+                }
                 _issetup = true;
             }
             else
