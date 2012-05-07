@@ -18,12 +18,7 @@ namespace Calendar.Controllers
 
         public ActionResult Index()
         {
-            var repository = new Calendar.Respository.MongoDB.CalendarRepository<CalendarEvent>("CalendarEvents");
-
-          
-            // fetch all objects
-            var thingies = repository.GetAll();
-            return View(thingies.ToList());
+            return View();
         }
         [HttpPost]
         public JsonResult Add(WijmoEvent ev, string st, dynamic o, object data)
@@ -73,6 +68,25 @@ namespace Calendar.Controllers
             {
                 result.WijmoEvent = ev;
                 repository.Save(result);
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
+        }
+        [HttpPost]
+        public JsonResult Delete(WijmoEvent ev, string st, dynamic o, object data)
+        {
+            //var y = HttpContext.Request.InputStream;
+            //y.Position = 0;
+            //var json = string.Empty;
+            //using (var reader = new StreamReader(y))
+            //{
+            //    json = reader.ReadToEnd();
+            //}
+            var repository = new Calendar.Respository.MongoDB.CalendarRepository<CalendarEvent>("CalendarEvents");
+            var query = Query.EQ("WijmoEvent._id", ev.id);
+            var result = repository.Remove(query);
+            if (result != null)
+            {
                 return Json(new { success = true });
             }
             return Json(new { success = false });
