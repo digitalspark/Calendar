@@ -1,4 +1,4 @@
-﻿@model List<Calendar.Models.testmodel>
+﻿@model List<Calendar.Objects.CalendarEvent>
 @{
     ViewBag.Title = "Index";
 }
@@ -10,42 +10,9 @@
         $("#eventscalendar").wijevcal({
             visibleCalendars: ["My", "Work"],
             dataStorage: {
-                addEvent: _updateEvent,
+                addEvent: _addEvent,
                 updateEvent: _updateEvent,
-//                deleteEvent: function (obj, successCallback, errorCallback) {
-//                    window.setTimeout(function () {
-//                        var curCalStore = amplify.store("calendarstore_" + obj.calendar);
-//                        if (!curCalStore) {
-//                            curCalStore = {};
-//                        }
-//                        if (curCalStore[obj.id]) {
-//                            delete curCalStore[obj.id];
-//                        }
-//                        amplify.store("calendarstore_" + obj.calendar, curCalStore);
-//                        successCallback()
-//                    }, 400); //simulate server delay
-//                    //errorCallback("Unable to delete event");
-//                },
-//                loadEvents: function (visibleCalendars,
-//											successCallback, errorCallback) {
-
-//                    var i, j, events = [];
-//                    window.setTimeout(function () {
-//                        for (i = 0; i < visibleCalendars.length; i++) {
-
-//                            var curCalStore = amplify.store("calendarstore_" + visibleCalendars[i]);
-//                            if (!curCalStore) {
-//                                curCalStore = {};
-//                                amplify.store("calendarstore_" + visibleCalendars[i], curCalStore);
-//                            }
-//                            for (j in curCalStore) {
-//                                events.push(curCalStore[j]);
-//                            }
-//                        }
-//                        successCallback(events);
-//                    }, 500);
-//                    //errorCallback("unable to load events");
-//                },
+                loadEvents: _loadEvents,
                 addCalendar: _updateCalendar,
                 updateCalendar: _updateCalendar,
                 deleteCalendar: function (obj, successCallback, errorCallback) {
@@ -59,18 +26,9 @@
                 }
             }
         });
-
-
-
     });
 
-    function _updateEvent(obj, successCallback, errorCallback) {
-
-//        $.post("/Calendar/Add", obj, function (msg) {
-//            alert("Data Saved: " + msg)
-//            successCallback();
-        //        });
-        var x = JSON.stringify(obj);
+    function _addEvent(obj, successCallback, errorCallback) {
         $.ajax({
             type: "POST",
             url: "/Calendar/Add",
@@ -78,21 +36,44 @@
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(obj)
         }).done(function (msg) {
-            alert("Data Saved: " + msg);
-            successCallback();
+            if (msg.success) {
+                successCallback();
+            } else {
+                errorCallback("Unable to add event");
+            }
         });
-//        window.setTimeout(function () {
-//            var curCalStore = amplify.store("calendarstore_" + obj.calendar);
-//            if (!curCalStore) {
-//                curCalStore = {};
-//            }
-//            curCalStore[obj.id] = obj;
-//            amplify.store("calendarstore_" + obj.calendar, curCalStore);
-//            successCallback()
-//        }, 400); //simulate server delay
-//        //errorCallback("Unable to save event");
     }
-
+    function _updateEvent(obj, successCallback, errorCallback) {
+        $.ajax({
+            type: "POST",
+            url: "/Calendar/Update",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(obj)
+        }).done(function (msg) {
+            if (msg.success) {
+                successCallback();
+            } else {
+                errorCallback("Unable to update event");
+            }
+        });
+    }
+    function _loadEvents(visibleCalendars, successCallback, errorCallbackk) {
+        $.ajax({
+            type: "POST",
+            url: "/Calendar/Get",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(visibleCalendars),
+            success: function (data) {
+                try {
+                    successCallback(JSON.stringify(data));
+                } catch (e) {
+                    errorCallback("Unable to load events");
+                }
+            }
+        });
+    }
     function _updateCalendar(obj, successCallback, errorCallback) {
         successCallback();
         //errorCallback("Unable to save calendar");

@@ -19,6 +19,10 @@ namespace Calendar.Respository.MongoDB
         public SafeModeResult Insert(T item){
             return _collection.Insert(item);
         }
+        public SafeModeResult Save(T item)
+        {
+            return _collection.Save(item);
+        }
         public IEnumerable<SafeModeResult> Insert(List<T> items)
         {
             return _collection.InsertBatch(items);
