@@ -21,7 +21,7 @@ namespace Calendar.Controllers
             return View();
         }
         [HttpPost]
-        public JsonResult Add(WijmoEvent ev, string st, dynamic o, object data)
+        public JsonResult Add(WijmoEvent ev)
         {
             //var y = HttpContext.Request.InputStream;
             //y.Position = 0;
@@ -52,7 +52,7 @@ namespace Calendar.Controllers
             return Json(results.Select(t => t.WijmoEvent));
         }
         [HttpPost]
-        public JsonResult Update(WijmoEvent ev, string st, dynamic o, object data)
+        public JsonResult Update(WijmoEvent ev)
         {
             //var y = HttpContext.Request.InputStream;
             //y.Position = 0;
@@ -73,7 +73,7 @@ namespace Calendar.Controllers
             return Json(new { success = false });
         }
         [HttpPost]
-        public JsonResult Delete(WijmoEvent ev, string st, dynamic o, object data)
+        public JsonResult Delete(WijmoEvent ev)
         {
             //var y = HttpContext.Request.InputStream;
             //y.Position = 0;
