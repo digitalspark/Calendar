@@ -8,6 +8,7 @@
     $(document).ready(function () {
         $("#eventscalendar").wijevcal({
             visibleCalendars: ["My", "Work"],
+            rightPaneVisible: false,
             dataStorage: {
                 addEvent: _addEvent,
                 updateEvent: _updateEvent,
@@ -93,5 +94,6 @@
         successCallback();
         //errorCallback("Unable to save calendar");
     }
+
 	</script>
 <div id="eventscalendar"></div>

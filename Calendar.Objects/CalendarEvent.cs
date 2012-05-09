@@ -23,5 +23,25 @@ namespace Calendar.Objects
         public string color { get; set; }
         public bool allday { get; set; }
         public string tag { get; set; }
+        public string recurrenceState { get; set; }
+        public WijmoRecurrencePattern recurrencePattern { get; set; }
+    }
+    public class WijmoRecurrencePattern
+    {
+        public string parentRecurrenceId { get; set; }
+        public string recurrenceType { get; set; }
+        public int interval { get; set; }
+        public DateTime startTime { get; set; }
+        public DateTime endTime { get; set; }
+        public DateTime patternStartDate { get; set; }
+        public DateTime patternEndDate { get; set; }
+        public int occurrances { get; set; }
+        public string instance { get; set; }
+        public string dayOfWeekMask { get; set; }
+        public int dayOfMonth { get; set; }
+        public int monthOfYear { get; set; }
+        public bool noEndDate { get; set; }
+        public List<WijmoEvent> exceptions { get; set; }
+        public List<WijmoEvent> removedOccurrences { get; set; }
     }
 }
