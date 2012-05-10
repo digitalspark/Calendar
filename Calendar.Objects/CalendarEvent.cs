@@ -35,7 +35,7 @@ namespace Calendar.Objects
         public DateTime endTime { get; set; }
         public DateTime patternStartDate { get; set; }
         public DateTime patternEndDate { get; set; }
-        public int occurrances { get; set; }
+        public int occurrences { get; set; }
         public string instance { get; set; }
         public string dayOfWeekMask { get; set; }
         public int dayOfMonth { get; set; }
